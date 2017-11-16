@@ -212,7 +212,8 @@ def train(params, dirnames):
                       metrics=['accuracy'])
 
         earlyStopping = EarlyStopping(monitor='loss', patience=2, verbose=1, mode='auto')
-        mod = model.fit(datasets['X_train'], datasets['Y_train'], batch_size=batch_size, epochs=epochs, verbose=1, callbacks=[earlyStopping], shuffle=True, validation_data=(datasets['X_test'], datasets['Y_test']))
+        #mod = model.fit(datasets['X_train'], datasets['Y_train'], batch_size=batch_size, epochs=epochs, verbose=1, callbacks=[earlyStopping], shuffle=True, validation_data=(datasets['X_test'], datasets['Y_test']))
+        mod = model.fit(datasets['X_train'], datasets['Y_train'], batch_size=batch_size, epochs=epochs, verbose=1, callbacks=[earlyStopping], shuffle=True, validation_split=0.1)
         modLoss = mod.history['loss']
 
         # check to make sure optimization didn't diverged
